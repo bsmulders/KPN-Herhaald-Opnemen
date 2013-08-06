@@ -11,7 +11,7 @@ Alle requests worden beantwoord met een JSON response. De structuur van het resp
 ### Login
 Doel: Inloggen op itvonline.nl
 
-Voorbeeld: _https://www.itvonline.nl/AVS/besc?action=Login&callback=jQuery1523961375789383374&channel=PCTV&username=XXX&password=0000&remember=N&_=1375789493_
+Voorbeeld: *https://www.itvonline.nl/AVS/besc?action=Login&callback=jQuery1523961375789383374&channel=PCTV&username=XXX&password=0000&remember=N&_=1375789493*
 
 **Parameters**
 
@@ -26,7 +26,7 @@ Voorbeeld: _https://www.itvonline.nl/AVS/besc?action=Login&callback=jQuery152396
 ### GetLiveChannels
 Doel: Ophalen van alle kanalen inclusief gedetaileerde informatie
 
-Voorbeeld: _https://www.itvonline.nl/AVS/besc?action=GetLiveChannels&channel=PCTV&startTimeStamp=1375740000&endTimeStamp=1375826399_
+Voorbeeld: *https://www.itvonline.nl/AVS/besc?action=GetLiveChannels&channel=PCTV&startTimeStamp=1375740000&endTimeStamp=1375826399*
 
 **Parameters**
 
@@ -38,7 +38,7 @@ Voorbeeld: _https://www.itvonline.nl/AVS/besc?action=GetLiveChannels&channel=PCT
 ### GetEpg
 Doel: Ophalen van de EPG
 
-Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=GetEpg&channel=PCTV&startTimeStamp=1375826400&endTimeStamp=1375912799&channelId=18%3B19%3B20%3B21%3B22%3B23%3B24%3B25%3B26%3B27%3B30%3B31%3B29%3B28%3B32_
+Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetEpg&channel=PCTV&startTimeStamp=1375826400&endTimeStamp=1375912799&channelId=18%3B19%3B20%3B21%3B22%3B23%3B24%3B25%3B26%3B27%3B30%3B31%3B29%3B28%3B32*
 
 **Parameters**
 
@@ -51,7 +51,7 @@ Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=GetEpg&channel=PCTV&startTim
 ### GetRecordingList
 Doel: Ophalen van de lijst met ingeprogrameerde opnames
 
-Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=GetRecordingList&channel=PCTV&typeOfRecording=individual&stateOfRecording=ALL_
+Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetRecordingList&channel=PCTV&typeOfRecording=individual&stateOfRecording=ALL*
 
 **Parameters**
 
@@ -63,7 +63,7 @@ Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=GetRecordingList&channel=PCT
 ### SetRecording
 Doel: Inprogrammeren van een opname
 
-Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=SetRecording&channel=PCTV&externalChannelId=dtvchannels_15&programRefNr=0003604642&programStartTime=1375794000000&enableAutoDelete=N_
+Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=SetRecording&channel=PCTV&externalChannelId=dtvchannels_15&programRefNr=0003604642&programStartTime=1375794000000&enableAutoDelete=N*
 
 **Parameters**
 
@@ -77,7 +77,7 @@ Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=SetRecording&channel=PCTV&ex
 ### Logout
 Doel: Uitloggen (niet verplicht, wel zo netjes)
 
-Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=Logout&callback=jQuery1523961375789383374&channel=PCTV&_=1375789493_
+Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=Logout&callback=jQuery1523961375789383374&channel=PCTV&_=1375789493*
 
 **Parameters**
 
