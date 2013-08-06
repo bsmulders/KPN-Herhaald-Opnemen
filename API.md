@@ -11,7 +11,7 @@ Alle requests worden beantwoord met een JSON response. De structuur van het resp
 ### Login
 Doel: Inloggen op itvonline.nl
 
-Voorbeeld: _https://www.itvonline.nl/AVS/besc?action=Login&callback=jQuery1523961375789383374&channel=PCTV&username=XXX&password=0000&remember=N&\_=1375789493_
+Voorbeeld: _https://www.itvonline.nl/AVS/besc?action=Login&callback=jQuery1523961375789383374&channel=PCTV&username=XXX&password=0000&remember=N&_=1375789493_
 
 **Parameters**
 
@@ -28,7 +28,7 @@ Doel: Ophalen van alle kanalen inclusief gedetaileerde informatie
 
 Voorbeeld: _https://www.itvonline.nl/AVS/besc?action=GetLiveChannels&channel=PCTV&startTimeStamp=1375740000&endTimeStamp=1375826399_
 
-** Parameters **
+**Parameters**
 
   * action: "GetLiveChannels"
   * channel: "PCTV" (?)
@@ -40,7 +40,7 @@ Doel: Ophalen van de EPG
 
 Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=GetEpg&channel=PCTV&startTimeStamp=1375826400&endTimeStamp=1375912799&channelId=18%3B19%3B20%3B21%3B22%3B23%3B24%3B25%3B26%3B27%3B30%3B31%3B29%3B28%3B32_
 
-** Parameters **
+**Parameters**
 
   * action: "GetEpg"
   * channel: "PCTV" (?)
@@ -53,7 +53,7 @@ Doel: Ophalen van de lijst met ingeprogrameerde opnames
 
 Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=GetRecordingList&channel=PCTV&typeOfRecording=individual&stateOfRecording=ALL_
 
-** Parameters **
+**Parameters**
 
   * action: "GetRecordingList"
   * channel: "PCTV" (?)
@@ -65,7 +65,7 @@ Doel: Inprogrammeren van een opname
 
 Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=SetRecording&channel=PCTV&externalChannelId=dtvchannels_15&programRefNr=0003604642&programStartTime=1375794000000&enableAutoDelete=N_
 
-** Parameters **
+**Parameters**
 
   * action: "SetRecording"
   * channel: "PCTV" (?)
@@ -77,9 +77,9 @@ Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=SetRecording&channel=PCTV&ex
 ### Logout
 Doel: Uitloggen (niet verplicht, wel zo netjes)
 
-Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=Logout&callback=jQuery1523961375789383374&channel=PCTV&\_=1375789493_
+Voorbeeld: _http://www.itvonline.nl/AVS/besc?action=Logout&callback=jQuery1523961375789383374&channel=PCTV&_=1375789493_
 
-** Parameters **
+**Parameters**
 
   * action: "Logout"
   * callback: Zal mee worden gegeven in de response
