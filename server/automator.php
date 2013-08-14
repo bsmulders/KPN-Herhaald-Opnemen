@@ -72,7 +72,7 @@ class Automator {
 		
 		// Opname verzoeken die meer dan een uur niet uitgevoerd zijn elk heel 
 		// uur uitvoeren
-		if (date("i") == "00" || true) {
+		if (date("i") == "00") {
 			$this->honorRequests($this->getOverdueRequests());
 		}
 		
