@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--
+Dit bestand is onderdeel van KPN Herhaald Opnemen
+
+Copyright (c) 2013, Bobbie Smulders
+
+Contact: mail@bsmulders.com
+
+GNU General Public License Usage
+This file may be used under the terms of the GNU General Public License version 3.0 as published by the Free Software Foundation and appearing in the file LICENSE included in the packaging of this file. Please review the following information to ensure the GNU General Public License version 3.0 requirements will be met: http://www.gnu.org/copyleft/gpl.html.
+-->
+<html lang="nl">
+	<head>
+		<title>KPN Herhaald Opnemen</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	</head>
+	<body>
+		<div data-role="page" id="newRequestPage">
+			<div data-role="header" data-position="fixed">
+				<a href="index.html" data-icon="delete">Terug</a>
+				<h1>Nieuw</h1>
+				<a href="#" data-icon="plus" id="submit" data-theme="b">Opslaan</a>
+			</div>
+
+			<div data-role="content">
+				<form id="newRequestForm">
+					<ul data-role="listview" data-inset="true">
+						<li data-role="fieldcontain">
+							<label for="name">Zoekterm:</label>
+							<input type="text" name="name" id="name" value=""  />
+						</li>
+						<li data-role="fieldcontain">
+								<fieldset data-role="controlgroup" data-type="horizontal" >
+							    	<legend>Type:</legend>
+
+									<label for="exact-1">Gedeeltelijk</label>
+									<input type="radio" name="exact" id="exact-1" value="1"  />
+
+									<label for="exact-0">Exact</label>
+									<input type="radio" name="exact" id="exact-0" value="0" checked="checked"  />
+								</fieldset>
+						</li>
+						<li data-role="fieldcontain">
+								<label for="channel">Kanaal:</label>
+								<select name="channel" id="channel">
+										<option value="" >Elk kanaal</option>
+								</select>
+						</li>
+						<li data-role="fieldcontain">
+								<fieldset data-role="controlgroup" data-type="vertical"> 
+									<legend>Tijd:</legend>
+
+									<label for="day">Dag:</label>
+									<select name="day" id="day">
+										<option value="every">Elke dag</option>
+										<option value="monday">Maandag</option>
+										<option value="tuesday">Dinsdag</option>
+										<option value="wednesday">Woensdag</option>
+										<option value="thursday">Donderdag</option>
+										<option value="friday">Vrijdag</option>
+										<option value="saturday">Zaterdag</option>
+										<option value="sunday">Zondag</option>
+									</select>
+
+									<label for="timeslot">Tijdstip:</label>
+										<select name="timeslot" id="timeslot">
+										<option value="entire">Gehele dag</option>
+										<option value="morning">Ochtend</option>
+										<option value="afternoon">Middag</option>
+										<option value="evening">Avond</option>
+										<option value="night">Nacht</option>
+									</select>
+								</fieldset>
+						</li>
+					</ul>
+				</form>
+			</div>
+		
+			<script>
+				var lock = false;
+
+				function fillChannelSelect() {
+					$.getJSON("../rest/channels/", function (data) {
+						$('#channel').empty();
+
+			    		$('#channel').append('<option value="">Elk kanaal</option>');
+
+				    	$.each(data, function (i, data) {
+				    		$('#channel').append('<option value="'+data.name+'">'+data.name+'</option>');
+						});
+					});
+				}
+				
+				function fillNameAutocomplete() {
+					$.getJSON("../rest/channels/?q=" + $("#name").val(), function (data) {
+						$('#suggestions').empty();
+						
+						$.each(data, function (i, data) {
+							$('#suggestions').append('<li>'+data.name+'</li>');
+						});
+					});
+				}
+								
+				function formSubmit() {
+					if (lock == true)
+						return false;
+
+					lock = true;
+					
+					var formData = $("#newRequestForm").serialize();
+				
+					$.ajax({
+						type: "POST",
+						url: "../rest/requests/",
+						cache: false,
+						data: formData,
+						success: function() { 
+							window.location.href = "index.html"; 
+						},
+						error: function() { lock = false; }
+					});
+
+					return false;
+				}
+				
+				$(document).on('pageshow', '#newRequestPage', function() {
+					fillChannelSelect();
+
+					//$("#name").on("input", function(e) {
+					//	fillNameAutocomplete();
+					//});
+					
+					$("#newRequestForm").submit(function () {
+						formSubmit();
+					});
+
+					$("#submit").click(function () {
+						formSubmit();
+					});
+				});
+		    </script>
+		</div>
+	</body>
+</html>

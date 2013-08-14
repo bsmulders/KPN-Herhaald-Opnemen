@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--
+Dit bestand is onderdeel van KPN Herhaald Opnemen
+
+Copyright (c) 2013, Bobbie Smulders
+
+Contact: mail@bsmulders.com
+
+GNU General Public License Usage
+This file may be used under the terms of the GNU General Public License version 3.0 as published by the Free Software Foundation and appearing in the file LICENSE included in the packaging of this file. Please review the following information to ensure the GNU General Public License version 3.0 requirements will be met: http://www.gnu.org/copyleft/gpl.html.
+-->
+<html lang="nl">
+	<head>
+		<title>KPN Herhaald Opnemen</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/> 
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	</head>
+	<body>
+		<div data-role="page" id="listPage">
+			<div data-role="header" data-position="fixed">
+				<h1>Programma's</h1>
+				<a href="newrequest.html" data-icon="plus" data-theme="b">Nieuw</a>
+			</div>
+
+			<div data-role="content">
+				<div id="output">
+					<ul id="list" class="touch" data-role="listview" data-icon="false" data-split-icon="delete" data-split-theme="d" data-inset="true">
+					</ul>
+				</div>
+			</div>
+		
+			<script>
+				function buildTimeslotString(day, timeslot) {
+					switch(day) {
+						case 'every':
+							var retval = 'Elke '
+							break;
+						case 'monday':
+							var retval = 'Maandag'
+							break;
+						case 'tuesday':
+							var retval = 'Dindag'
+							break;
+						case 'wednesday':
+							var retval = 'Woensdag'
+							break;
+						case 'thursday':
+							var retval = 'Donderdag'
+							break;
+						case 'friday':
+							var retval = 'Vrijdag'
+							break;
+						case 'saturday':
+							var retval = 'Zaterdag'
+							break;
+						case 'sunday':
+							var retval = 'Zondag'
+							break;
+					}
+					
+					switch(timeslot) {
+						case 'entire':
+							if (day == 'every') {
+								retval += 'dag'
+							}
+							break;
+						case 'morning':
+							retval += 'ochtend'
+							break;
+						case 'afternoon':
+							retval += 'middag'
+							break;
+						case 'evening':
+							retval += 'avond'
+							break;
+						case 'night':
+							retval += 'nacht'
+							break;
+					}
+					
+					return retval;
+				}
+				
+				function buildLastScanString(lastscan) {
+					if (lastscan == '' || lastscan == null) {
+						var retval = 'Nog niet naar gezocht'
+					}
+					else {
+						var t = lastscan.split(/[- :]/);
+						var date = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+						var minutes = ((new Date()) - date) / 1000 / 60;
+
+						if (minutes < 2) {
+							var retval = '1 minuut geleden voor het laatst naar gezocht';
+						}
+						else {
+							var retval = parseInt(minutes) + ' minuten geleden voor het laatst naar gezocht';
+						}
+					}
+					
+					return retval;
+				}
+							
+				function fillList() {
+					$.getJSON("../rest/requests/", function (data) {
+
+						$('#output ul').empty();
+
+						$.each(data, function (i, data) {
+							var id = data.id;
+							var name = data.name + ((data.exact == '1') ? ' *' : '');
+							var channel = (data.channel == '') ? 'Alle kanalen' : data.channel;
+							var timeslot = buildTimeslotString(data.day, data.timeslot);
+							var lastscan = buildLastScanString(data.lastscan);
+
+							$('#output ul').append('<li id="request_' + id + '"><a href="#"><h3>' + name + '</h3><p>' + channel + '</p><p>' + timeslot + '</p><p>' + lastscan + '</p></a><a href="#" class="delete">Verwijder programma</a></li>');
+						});
+
+						$(".delete").on("click", function () {
+							var listid = $(this).parent()[0].id.substring(8);
+
+							$.ajax({
+								type: "DELETE",
+								url: "../rest/requests/" + listid,
+								cache: false,
+								success: fillList
+							});
+						});	
+		    			
+			    		$('#output ul').listview('refresh');
+			    	});				
+				}
+							
+				$(document).on('pageshow', '#listPage', function() {
+					fillList();
+					setInterval(fillList, 15*1000);
+				});
+		    </script>
+		</div>
+	</body>
+</html>
