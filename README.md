@@ -40,7 +40,7 @@ Importeer het database.sql bestand naar een MySQL database.
 
 ### server
 
-Plaats de bestanden op een (web)server. Pas config.php aan met de juiste configuratieparameters (database, inloggegevens van itvonline.nl, persoonlijke voorkeuren). Maak op de server een crontab aan die cron.php elke minuut aanroept. Het script zorgt vervolgens zelf dat alles op het juiste moment wordt uitgevoerd. Mocht dit te veel load opleveren, is een crontab om het uur (0 * * * *) ook mogelijk. 
+Plaats de bestanden op een (web)server. Pas config.php aan met de juiste configuratie parameters (database, inloggegevens van itvonline.nl, persoonlijke voorkeuren). Maak op de server een crontab aan die cron.php elke minuut aanroept (*/1 * * * *). Het script zorgt vervolgens zelf dat alles op het juiste moment wordt uitgevoerd. Mocht dit te veel load opleveren, is een crontab om het uur (0 * * * *) ook mogelijk. 
 
 ### client
 
