@@ -19,6 +19,10 @@ Om het gebruiksgemak te verhogen is een gebruiksvriendelijke GUI gewenst.
 
 Dit document bevat de API die itvonline.nl hanteert.
 
+### database
+
+Database (MySQL) voor het opslaan van opname verzoeken, kanaal namen en programma namen.
+
 ### proofofconcept.php
 
 Dit is een simpel PHP script dat inlogt op itvonline.nl, de EPG van de komende 24 uur download, op zoek gaat naar programma's genaamd "Sesamstraat" of "Lingo" en de resultaten vervolgens inprogrammeerd. Dit script is enkel gemaakt ter demonstratie van het gebruik van de API. Het is mogelijk deze in productie te gebruiken of er een applicatie op verder te bouwen, het wordt echter niet aangeraden.
