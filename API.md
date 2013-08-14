@@ -3,7 +3,9 @@
 De base-URI van de API is:
 http://www.itvonline.nl/AVS/besc
 
-Alle requests worden beantwoord met een JSON response. De structuur van het response zal mogelijk later in dit document beschreven worden. Doordat de reponse is leesbaar Engels wordt opgestuurd is het echter niet heel lastig om dit zelf uit te zoeken. 
+Alle requests worden beantwoord met een JSON response. De structuur van het response zal mogelijk later in dit document beschreven worden. Doordat de response in leesbaar Engels wordt opgestuurd is het echter niet heel lastig om dit zelf uit te zoeken. 
+
+Bij alle requests kan met de channel parameter mee worden gegeven of het verzoek van itvonline.nl of van de mobiele app af komt ("PCTV" / "IPAD"). Het is nog onduidelijk wat hier de verdere gevolgen van zijn.
 
 ## API requests
 
@@ -15,8 +17,8 @@ Voorbeeld: *https://www.itvonline.nl/AVS/besc?action=Login&callback=jQuery152396
 **Parameters**
 
   * action: "Login"
-  * callback: Zal mee worden gegeven in de response
-  * channel: "PCTV", vermoedelijk voor differentiatie tussen de PC en tablet versie
+  * callback: Zal mee worden gegeven in de response. Is optioneel
+  * channel: "PCTV"
   * username: Is het abonnementsnummer
   * password: Is de pincode
   * remember: "N", vermoedelijk of een cookie gezet moet worden
@@ -40,7 +42,7 @@ Voorbeeld: *https://www.itvonline.nl/AVS/besc?action=GetProfile&callback=jQuery1
 **Parameters**
 
   * action: GetProfile
-  * callback: Zal mee worden gegeven in de response
+  * callback: Zal mee worden gegeven in de response. Is optioneel
   * channel: "PCTV"
   * _: Timestamp op het moment van het verzoek
 
@@ -52,7 +54,7 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=KeepAlive&channel=PCTV*
 **Parameters**
 
   * action: "KeepAlive"
-  * channel: "PCTV", vermoedelijk voor differentiatie tussen de PC en tablet versie
+  * channel: "PCTV"
 
 ### Logout
 Doel: Uitloggen
@@ -62,8 +64,8 @@ Voorbeeld: *https://www.itvonline.nl/AVS/besc?action=Logout&callback=jQuery15239
 **Parameters**
 
   * action: "Logout"
-  * callback: Zal mee worden gegeven in de response
-  * channel: "PCTV", vermoedelijk voor differentiatie tussen de PC en tablet versie
+  * callback: Zal mee worden gegeven in de response. Is optioneel
+  * channel: "PCTV"
   * _: Timestamp op het moment van het verzoek
 
 ### GetLiveChannels
@@ -74,7 +76,7 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetLiveChannels&channel=PCTV
 **Parameters**
 
   * action: "GetLiveChannels"
-  * channel: "PCTV" of "IPAD", vermoedelijk voor differentiatie tussen de PC en tablet versie
+  * channel: "PCTV" of "IPAD"
   * startTimeStamp: Timestamp voor begin van periode
   * endTimeStamp: Timestamp voor einde van periode
 
@@ -86,7 +88,7 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetEpg&channel=PCTV&startTim
 **Parameters**
 
   * action: "GetEpg"
-  * channel: "PCTV" of "IPAD", vermoedelijk voor differentiatie tussen de PC en tablet versie
+  * channel: "PCTV" of "IPAD"
   * startTimeStamp: Timestamp voor begin van periode
   * endTimeStamp: Timestamp voor einde van periode
   * channelId: ID('s) van de kanalen die gewenst zijn. Deze ID's zijn met GetLiveChannels op te vragen. ID's zijn gescheiden met '%3B'. De parameter is optioneel, zonder deze parameter worden alle kanalen getoond
@@ -99,7 +101,7 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetEpgMobile&channel=IPAD&en
 **Parameters**
 
   * action: "GetEpgMobile"
-  * channel: "IPAD", vermoedelijk voor differentiatie tussen de PC en tablet versie
+  * channel: "IPAD"
   * startTimeStamp: Timestamp voor begin van periode
   * endTimeStamp: Timestamp voor einde van periode
   * channelId: ID('s) van de kanalen die gewenst zijn. Deze ID's zijn met GetLiveChannels op te vragen. ID's zijn gescheiden met '%3B'. De parameter is optioneel, zonder deze parameter worden alle kanalen getoond
@@ -112,7 +114,7 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetLiveInfo&channel=PCTV&con
 **Parameters**
 
   * action: "GetLiveInfo"
-  * channel: "PCTV", vermoedelijk voor differentiatie tussen de PC en tablet versie
+  * channel: "PCTV"
   * contentId: ID van het programma
 
 ### GetRecordingList
@@ -123,7 +125,7 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetRecordingList&channel=PCT
 **Parameters**
 
   * action: "GetRecordingList"
-  * channel: "PCTV" of "IPAD", vermoedelijk voor differentiatie tussen de PC en tablet versie
+  * channel: "PCTV" of "IPAD"
   * typeOfRecording: "individual", onbekende functionaliteit
   * stateOfRecording: "ALL", onbekende functionaliteit
 
@@ -135,10 +137,10 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=SetRecording&channel=PCTV&ex
 **Parameters**
 
   * action: "SetRecording"
-  * channel: "PCTV", vermoedelijk voor differentiatie tussen de PC en tablet versie
-  * externalChannelId: ID van het kanaal. Let op: Is anders dan het ID gebruikt in de request van GetEpg. Dit ID is terug te vinden in het individueele programma in het EPG. Zie de proof of concept voor een voorbeeld.
-  * programRefNr: ID van het op te nemen programma. Kan gevonden worden in het EPG.
-  * programStartTime: Timestamp van het op te nemen programma in milliseconde
+  * channel: "PCTV"
+  * externalChannelId: ID van het kanaal. Kan gevonden worden in het EPG (externalChannelId).
+  * programRefNr: ID van het op te nemen programma. Kan gevonden worden in het EPG (externalContentId).
+  * programStartTime: Timestamp van het op te nemen programma in milliseconde. Kan gevonden worden in het EPG (startTime)
   * enableAutoDelete: "N", vermoedelijk of de opname verwijderd moet worden als er ruimtegebrek is
 
 ### DeleteRecordings
@@ -149,8 +151,11 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=DeleteRecordings&channel=PCT
 **Parameters**
 
   * action: "DeleteRecordings"
-  * channel: "PCTV", vermoedelijk voor differentiatie tussen de PC en tablet versie
-  * recordIDList: ID van te verwijderen programma. Onbekend waar deze naar refereert. Naam van de parameter en de action suggereert dat het mogelijk is meerdere opnames in ÈÈn keer te verwijderen, nog uit te zoeken
+  * channel: "PCTV"
+  * recordIDList: ID van te verwijderen programma. Kan gevonden worden in de recording list (recordID). 
+  * userStartTimeMarkList: Onbekende functionaliteit. Kan gevonden worden in de recording list (userStartTimeMarker).
+
+De namen van de laatste twee parameters doen vermoeden dat het mogelijk is om meerdere items gelijktijdig te verwijderen. Dit moet nog uitgezocht worden.
 
 ### SearchContents
 Doel: Zoeken naar content op itvonline.nl
@@ -160,7 +165,7 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=SearchContents&channel=PCTV&
 **Parameters**
 
   * action: "SearchContents"
-  * channel: "PCTV", vermoedelijk voor differentiatie tussen de PC en tablet versie
+  * channel: "PCTV"
   * query: Zoekterm
 
 ## Nog uit te zoeken API requests
@@ -242,6 +247,12 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetCDN&channel=PCTV&id=18&ty
 Doel: Vermoedelijk voor het tabblad "Videotheek tips"
 
 Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetRecommendedContents&channel=PCTV&isAnonymous=N*
+
+**Parameters**
+
+  * action: "GetRecommendedContents"
+  * channel: "PCTV"
+  * isAnonymouse: "Y" / "N"
 
 ### GetContentList
 
