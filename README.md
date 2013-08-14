@@ -29,7 +29,7 @@ HTML applicatie voor het benaderen van de database; om opname verzoeken uit te l
 
 ### proofofconcept.php
 
-Dit is een simpel PHP script dat inlogt op itvonline.nl, de EPG van de komende 24 uur download, op zoek gaat naar programma's genaamd "Sesamstraat" of "Lingo" en de resultaten vervolgens inprogrammeerd. Dit script is enkel gemaakt ter demonstratie van het gebruik van de API. Het is mogelijk deze in productie te gebruiken of er een applicatie op verder te bouwen, het wordt echter niet aangeraden.
+Een simpel PHP script dat inlogt op itvonline.nl, de EPG van de komende 24 uur download, op zoek gaat naar programma's genaamd "Sesamstraat" of "Lingo" en de resultaten vervolgens inprogrammeerd. Dit script is enkel gemaakt als basisimplementatie om aan te tonen dat geautomatiseerd opnemen mogelijk is. Het is mogelijk dit script in productie te gebruiken of er een applicatie op verder te bouwen, het wordt echter niet aangeraden.
 
 ## Gebruik
 ### proofofconcept.php
