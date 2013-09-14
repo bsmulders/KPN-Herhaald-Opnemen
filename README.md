@@ -1,5 +1,7 @@
 # KPN Herhaald Opnemen
 
+![Screenshot](screenshot.png)
+
 ## Licentie
 Copyright (c) 2013, Bobbie Smulders
 
