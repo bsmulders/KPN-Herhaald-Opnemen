@@ -14,6 +14,8 @@ Het is met KPN Interactieve Televisie in combinatie met het Opnemen pakket niet 
 
 Het doel van dit project is het maken van een applicatie of script die met een bepaalde interval de EPG van itvonline.nl download, de gewenste TV-programma's opzoekt en een opname verzoek naar KPN stuurt.
 
+**Update:** Het is sinds kort mogelijk om TV programma's met de set-top box van KPN automatisch herhaald op te laten nemen. De ontwikkeling van dit project is om deze reden stopgezet. De API wrapper zal mogelijk nog wel verder ontwikkeld worden, aangezien deze ook voor andere projecten bruikbaar is.
+
 ## Project onderdelen
 ### API.md
 
