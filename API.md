@@ -144,7 +144,7 @@ Voorbeeld: *http://www.itvonline.nl/AVS/besc?action=GetRecordingList&channel=PCT
   * action: "GetRecordingList"
   * channel: "PCTV" of "IPAD"
   * typeOfRecording: "all", "individual", "series", mogelijkheid tot filteren op opname-type (eenmalig of serie opname)
-  * stateOfRecording: "ALL", "FINISHED", "SCHEDULED", "ONGOING", mogelijkheid tot filteren op de opname-status
+  * stateOfRecording: "ALL", "FINISHED", "SCHEDULED", "ONGOING", mogelijkheid tot filteren op de type van opname. De eerste drie mogelijkheden spreken voor zich, de vierde mogelijkheid geeft een lijst met series die automatisch opgenomen worden.
 
 ### SetRecording
 Doel: Inprogrammeren van een opname
